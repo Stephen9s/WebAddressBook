@@ -12,11 +12,12 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "Username successfull created!"
       flash[:color] = "valid"
+      redirect_to :controller => 'sessions', :action => 'login'
     else
       flash[:notice] = "Form is invalid"
       flash[:color] = "invalid"
+      render "new"
     end
     
-    render "new"
   end
 end
