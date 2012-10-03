@@ -9,6 +9,12 @@
 <body>
 
 <%= yield %>
+<br><br>
+<% if @current_user.nil? %>
+	
+	<% else %>
+	<%= link_to "Log out", :controller => 'sessions', :action => 'logout' %>
+<% end %>
 
 </body>
 </html>

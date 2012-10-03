@@ -2,13 +2,16 @@
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Phone Number</th>
   </tr>
 
 <% @addresses.each do |address| %>
   <tr>
+  	<td><%= address.f_name %></td>
+  	<td><%= address.l_name %></td>
+    <td><%= address.phone_num %></td>
     <td><%= link_to 'Show', address %></td>
     <td><%= link_to 'Edit', edit_address_path(address) %></td>
     <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
