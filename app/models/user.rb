@@ -43,4 +43,6 @@ class User < ActiveRecord::Base
   def clear_password
     self.password = nil
   end
+  
+  
 end

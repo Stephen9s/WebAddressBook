@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag "index" %>
+<body>
+<table id="addresses_table" cellspacing="2">
+	<tr class="addresses_table_title">
+		<th colspan="5">Contacts</th>
+	</tr>
+  	<tr class="row_header">
+		<td>First Name</td>
+		<td>Last Name</td>
+		<td>Phone Number</td>
+  	</tr>
+	
+	<% if @addresses.any? %>
+		<% for address in @addresses %>
+			<tr>
+				<td class="data">
+					<%= address.f_name%>
+				</td>
+				<td class="data">
+					<%= address.l_name%>
+				</td>
+				<td class="data">
+					<%= address.phone_num %>
+				</td>
+			</tr>
+		<%end%>
+	<% else %>
+		You have no contacts!
+	<% end %>
+</table>
+</body>
