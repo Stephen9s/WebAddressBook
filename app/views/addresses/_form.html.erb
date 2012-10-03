@@ -10,6 +10,19 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="field">
+    <%= f.label "First Name" %><br />
+    <%= f.text_field :f_name %>
+  </div>
+  <div class="field">
+    <%= f.label "Last Name" %><br />
+    <%= f.text_field :l_name %>
+  </div>
+  <div class="field">
+    <%= f.label "Phone Number" %><br />
+    <%= f.text_field :phone_num %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

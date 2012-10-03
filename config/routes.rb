@@ -1,11 +1,11 @@
 WebAddressBook::Application.routes.draw do
   
   resources :addresses
-  get "address/index"
-  get "address/new"
-  get "address/edit"
-  get "address/show"
-  get "address/destroy"
+  match "addresses", :to => "addresses#index"
+  get "addresses/new"
+  get "addresses/edit"
+  get "addresses/show"
+  get "addresses/destroy"
 
   root :to => "sessions#login"
   match "signup", :to => "users#new"

@@ -18,6 +18,5 @@ class UsersController < ApplicationController
       flash[:color] = "invalid"
       render "new"
     end
-    
   end
 end
