@@ -35,4 +35,5 @@ class SessionsController < ApplicationController
 
   def setting
   end
+  
 end

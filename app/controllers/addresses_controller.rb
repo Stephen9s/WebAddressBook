@@ -1,6 +1,8 @@
 class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.json
+  
+  
   def index
     @addresses = Address.all(:conditions => ["user_id = :code", {:code => session[:user_id]}])
 
