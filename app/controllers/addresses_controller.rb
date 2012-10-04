@@ -28,17 +28,17 @@ class AddressesController < ApplicationController
     else
         @address = Address.find(params[:id])
         
-        if session[:user_id] == @address.user_id
-          
-          respond_to do |format|
-            format.html # show.html.erb
-            format.json { render json: @address }
-          end
-          
-        else
-          redirect_to :controller => 'sessions', :action => 'logout'
+        unless session[:user_id] == @address.user_id
+          redirect_to :controller => 'addresses', :action => 'index'
         end
+        
     end
+  rescue
+      if session[:user_id].nil?
+        redirect_to :controller => 'sessions', :action => 'login'
+      else
+        redirect_to :controller => 'sessions', :action => 'logout'
+      end
   end
 
   # GET /addresses/new
@@ -71,6 +71,12 @@ class AddressesController < ApplicationController
         redirect_to :controller => 'sessions', :action => 'logout', :message => "Hacker!"
       end
     end
+  rescue
+      if session[:user_id].nil?
+        redirect_to :controller => 'sessions', :action => 'login'
+      else
+        redirect_to :controller => 'sessions', :action => 'logout'
+      end
   end
 
   # POST /addresses
@@ -113,9 +119,15 @@ class AddressesController < ApplicationController
             end
           end
         else
-          redirect_to :controller => 'sessions', :action => 'logout', :message => "Hacker!"
+          redirect_to :controller => 'sessions', :action => 'logout'
         end
     end
+  rescue
+      if session[:user_id].nil?
+        redirect_to :controller => 'sessions', :action => 'login'
+      else
+        redirect_to :controller => 'sessions', :action => 'logout'
+      end
   end
 
   # DELETE /addresses/1
@@ -133,8 +145,14 @@ class AddressesController < ApplicationController
             format.json { head :no_content }
           end
         else
-          redirect_to :controller => 'sessions', :action => 'logout', :message => "Hacker!"
+          redirect_to :controller => 'sessions', :action => 'logout'
         end
     end
+  rescue
+      if session[:user_id].nil?
+        redirect_to :controller => 'sessions', :action => 'login'
+      else
+        redirect_to :controller => 'sessions', :action => 'logout'
+      end
   end
 end
