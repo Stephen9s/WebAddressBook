@@ -7,16 +7,13 @@ class AddressesController < ApplicationController
     if session[:user_id].nil?
       redirect_to :controller => 'sessions', :action => 'login'
     else
-      if @addresses.nil?
-        redirect_to new_address_path
-      else
         respond_to do |format|
-          format.html # index.html.erb
+          format.html { render 'index' }# index.html.erb
           format.json { render json: @addresses }
         end
-      end
     end
-    
+  rescue
+    redirect_to :controller => 'sessions', :action => 'logout'
   end
 
   # GET /addresses/1
@@ -90,7 +87,7 @@ class AddressesController < ApplicationController
       
       respond_to do |format|
         if @address.save
-          format.html { redirect_to @address, notice: 'Address was successfully created.' }
+          format.html { redirect_to addresses_path, notice: 'Contact was successfully created.' }
           format.json { render json: @address, status: :created, location: @address }
         else
           format.html { render action: "new" }
@@ -111,7 +108,7 @@ class AddressesController < ApplicationController
         if session[:user_id] == @address.user_id   
           respond_to do |format|
             if @address.update_attributes(params[:address])
-              format.html { redirect_to @address, notice: 'Address was successfully updated.' }
+              format.html { redirect_to addresses_path, notice: 'Contact was successfully updated.' }
               format.json { head :no_content }
             else
               format.html { render action: "edit" }
